@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi | Gede Yodyananta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="indonesia-mode dark-mode">
+
+    <nav>
+        <div class="logo">Gede Yodyananta</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about"><span class="id">Tentang</span><span class="en">About</span></a></li>
+            
+            <li><a href="#" class="active"><span class="id">Materi</span><span class="en">Learning</span></a></li>
+            
+            <li><a href="index.html#biodata"><span class="id">Biodata</span><span class="en">Bio</span></a></li>
+            <li><a href="index.html#contact"><span class="id">Kontak</span><span class="en">Contact</span></a></li>
+        </ul>
+        <div class="controls">
+            <button id="btn-id" class="active" onclick="setLanguage('id')">ID</button>
+            <button id="btn-en" onclick="setLanguage('en')">EN</button>
+            <button onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
+        </div>
+    </nav>
+
+    <section id="materi" class="bg-card">
+        <div class="container-materi">
+            <h2 class="section-title">
+                <span class="id">Alat Bantu Digital untuk Perencanaan</span>
+                <span class="en">Digital Tools for Planning</span>
+            </h2>
+
+            <div class="materi-block">
+                <h3>1. <span class="id">Pengertian</span><span class="en">Definition</span></h3>
+                <p class="id">Alat bantu digital untuk perencanaan adalah aplikasi, software, atau platform digital yang digunakan untuk membantu proses merancang, menyusun strategi, membuat diagram, mengatur jadwal, serta mengelola proyek agar lebih efisien dan terstruktur.</p>
+                <p class="en">Digital planning tools are applications, software, or digital platforms used to assist in the process of designing, strategizing, diagramming, scheduling, and managing projects to be more efficient and structured.</p>
+            </div>
+
+            <div class="materi-block">
+                <h3>2. <span class="id">Tujuan</span><span class="en">Purpose</span></h3>
+                <ul class="materi-list">
+                    <li><span class="id">Meningkatkan efektivitas dan ketepatan perencanaan</span><span class="en">Increase planning effectiveness and accuracy</span></li>
+                    <li><span class="id">Memudahkan dokumentasi dan revisi</span><span class="en">Facilitate documentation and revision</span></li>
+                    <li><span class="id">Mempermudah visualisasi ide</span><span class="en">Simplify idea visualization</span></li>
+                    <li><span class="id">Membantu kolaborasi tim</span><span class="en">Assist team collaboration</span></li>
+                </ul>
+            </div>
+
+            <div class="materi-block">
+                <h3>3. <span class="id">Manfaat</span><span class="en">Benefits</span></h3>
+                <table class="materi-table">
+                    <thead><tr><th><span class="id">Manfaat</span><span class="en">Benefit</span></th><th><span class="id">Penjelasan</span><span class="en">Explanation</span></th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="id">Efisien</span><span class="en">Efficient</span></td><td><span class="id">Penyusunan rencana lebih cepat dan akurat</span><span class="en">Faster and more accurate planning</span></td></tr>
+                        <tr><td><span class="id">Kolaboratif</span><span class="en">Collaborative</span></td><td><span class="id">Banyak tools mendukung kerja tim online</span><span class="en">Many tools support online teamwork</span></td></tr>
+                        <tr><td><span class="id">Terstruktur</span><span class="en">Structured</span></td><td><span class="id">Membantu membuat jadwal, to-do list, dan timeline</span><span class="en">Helps create schedules and to-do lists</span></td></tr>
+                        <tr><td><span class="id">Visual</span><span class="en">Visual</span></td><td><span class="id">Perencanaan lebih mudah dipahami melalui diagram</span><span class="en">Planning is easier to understand via diagrams</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="materi-block">
+                <h3>4. <span class="id">Jenis Alat Bantu Digital</span><span class="en">Types of Digital Tools</span></h3>
+                <div class="tools-grid">
+                    <div class="tool-card"><h4>A. Mind Mapping & Brainstorming</h4><p><span class="id">Merencanakan ide, konsep.</span><span class="en">Planning ideas, concepts.</span></p><ul><li>MindMeister, Miro, XMind</li></ul></div>
+                    <div class="tool-card"><h4>B. Project Management</h4><p><span class="id">Mengatur waktu, tugas.</span><span class="en">Managing time, tasks.</span></p><ul><li>Trello, Asana, Notion</li></ul></div>
+                    <div class="tool-card"><h4>C. Document Planning</h4><p><span class="id">Menyusun proposal & laporan.</span><span class="en">Drafting proposals & reports.</span></p><ul><li>Google Docs, MS Word</li></ul></div>
+                    <div class="tool-card"><h4>D. Spreadsheet & Analysis</h4><p><span class="id">Keuangan & tabel.</span><span class="en">Finance & tables.</span></p><ul><li>Excel, Google Sheets</li></ul></div>
+                </div>
+            </div>
+
+            <div class="materi-block">
+                <h3>5. <span class="id">Kesimpulan</span><span class="en">Conclusion</span></h3>
+                <p class="id">Alat bantu digital sangat penting dalam perencanaan karena membantu proses menjadi lebih cepat, terorganisir, akurat, dan mudah dipahami.</p>
+                <p class="en">Digital tools are crucial in planning as they help the process become faster, organized, accurate, and easier to understand.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2025 Gede Yodyananta</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>
