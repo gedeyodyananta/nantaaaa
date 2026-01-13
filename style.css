@@ -1,151 +1,959 @@
+/* =========================================
+   1. RESET & VARIABLES
+   ========================================= */
+/* HILANGKAN GARIS BAWAH YANG MENGGANGGU */
+a { text-decoration: none !important; }
+ul, li { list-style: none !important; }
+
 :root {
+    /* DARK MODE (DEFAULT) */
+    --bg-body: #0f0f0f;       
+    --bg-alt: #161616;        
+    --text-main: #ffffff;
+    --text-sec: #fffafa;      
+    
+    /* WARNA AKSEN (UNGU) */
+    --accent: #9b59b6;
+    --accent-hover: #8e44ad;
+    
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 4px 20px rgba(0,0,0,0.5);
+    
+    --font-main: 'Poppins', sans-serif;
+}
+
+/* LIGHT MODE */
+body.light-mode {
     --bg-body: #ffffff;
-    --bg-card: #f8f9fa;
+    --bg-alt: #f9f9f9;
     --text-main: #2d3436;
-    --text-muted: #636e72;
-    --primary: #8e44ad;
-    --primary-hover: #9b59b6;
-    --border: #dfe6e9;
-    --nav-bg: rgba(255, 255, 255, 0.9);
-    --shadow: 0 10px 20px rgba(0,0,0,0.05);
+    --text-sec: #000000c2;
+    
+    --accent: #6c5ce7;
+    --accent-hover: #5535db;
+    
+    --border: rgba(0, 0, 0, 0.08);
+    --shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
-body.dark-mode {
-    --bg-body: #0f0f0f;
-    --bg-card: #1a1a1a;
-    --text-main: #ecf0f1;
-    --text-muted: #b2bec3;
-    --primary: #9b59b6;
-    --primary-hover: #be2edd;
-    --border: #2d3436;
-    --nav-bg: rgba(15, 15, 15, 0.9);
-    --shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
 body {
+    font-family: var(--font-main);
     background-color: var(--bg-body);
     color: var(--text-main);
-    transition: background 0.4s, color 0.4s;
-    overflow-x: hidden;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden; 
 }
+img { max-width: 100%; display: block; }
 
+/* =========================================
+   2. NAVBAR
+   ========================================= */
+/* =========================================
+   2. NAVBAR (UPDATED - BUTTON STYLE)
+   ========================================= */
 nav {
-    position: fixed; top: 0; width: 100%; padding: 15px 5%;
-    background: var(--nav-bg); backdrop-filter: blur(10px);
+    position: fixed; top: 0; width: 100%; height: 80px;
+    background: var(--bg-body); 
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    display: flex; align-items: center;
+    transition: height 0.3s, background 0.3s;
+}
+
+/* Supaya background Nav agak transparan/blur dikit (Modern Look) */
+nav {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(var(--bg-body), 0.8); /* Perlu penyesuaian rgb manual jika var hex */
+}
+/* ATAU pakai solid color dari var kamu (opsi aman): */
+nav { background: var(--bg-body); }
+
+
+.nav-container {
+    width: 90%; max-width: 1200px; margin: auto;
     display: flex; justify-content: space-between; align-items: center;
-    z-index: 1000; border-bottom: 1px solid var(--border);
-}
-.logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: 1px; }
-nav ul { display: flex; list-style: none; gap: 25px; }
-nav ul li a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
-nav ul li a:hover, nav ul li a.active { color: var(--primary); }
-
-.controls button {
-    background: none; border: 1px solid var(--border); color: var(--text-main);
-    padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: 0.3s; font-size: 0.8rem;
-}
-.controls button:hover, .controls button.active {
-    background: var(--primary); color: white; border-color: var(--primary);
 }
 
-section { padding: 80px 10%; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-
-#home { flex-direction: column; text-align: center; padding-top: 120px; }
-.hero-badge {
-    background: rgba(142, 68, 173, 0.1); color: var(--primary);
-    padding: 8px 16px; border-radius: 30px; font-weight: bold; font-size: 0.9rem;
-    margin-bottom: 20px; display: inline-block;
+/* LOGO STYLE */
+.logo { 
+    font-weight: 800; font-size: 1.8rem; 
+    letter-spacing: 1px; color: var(--text-main);
 }
-#home h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
-.highlight { color: var(--primary); font-style: italic; border-right: 3px solid var(--primary); padding-right: 5px; animation: blink 0.7s infinite; }
-@keyframes blink { 50% { border-color: transparent; } }
 
-.btn-group { margin-top: 30px; display: flex; gap: 15px; justify-content: center; }
-.btn { padding: 12px 30px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.3s; }
-.btn-fill { background: var(--primary); color: white; }
-.btn-fill:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4); }
-.btn-outline { border: 2px solid var(--border); color: var(--text-main); }
-.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+/* NAVIGASI DESKTOP - GAYA TOMBOL */
+.nav-desktop { 
+    display: flex; 
+    gap: 15px; /* Jarak antar tombol dikurangi dikit karena tombolnya punya padding */
+    align-items: center;
+}
 
-.about-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; width: 100%; }
-.photo-wrapper { position: relative; width: fit-content; margin: auto; }
-.profile-pic {
-    width: 280px; height: 350px; object-fit: cover;
-    border-radius: 20px; filter: grayscale(100%); transition: 0.5s;
+.nav-desktop a {
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    color: var(--text-sec); 
+    
+    /* BIKIN JADI BENTUK TOMBOL */
+    padding: 10px 20px;       /* Isi dalam tombol */
+    border-radius: 50px;      /* Lengkungan bulat (Pil) */
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* EFEK HOVER (SAAT KURSOR MASUK) */
+.nav-desktop a:hover {
+    background-color: var(--accent); /* Background Ungu/Warna Aksen */
+    color: #ffffff !important;       /* Teks Paksa Putih biar kontras */
+    transform: translateY(-2px);     /* Naik dikit */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Bayangan halus */
+}
+
+/* NAV CONTROLS (TOMBOL MENU HP & THEME) */
+.nav-controls { display: flex; gap: 15px; align-items: center; }
+
+.icon-btn, .hamburger-btn {
+    background: none; border: 1px solid var(--border); 
+    border-radius: 50%; width: 40px; height: 40px;
+    color: var(--text-main); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.3s;
+}
+
+.icon-btn:hover { 
+    background-color: var(--accent); 
+    border-color: var(--accent); 
+    color: #fff; /* Icon jadi putih saat hover */
+}
+
+.hamburger-btn { display: none; font-size: 1.2rem; }
+.lang-toggle { font-size: 0.85rem; font-weight: 700; }
+
+/* =========================================
+   FIX KHUSUS LIGHT MODE (NAVBAR)
+   ========================================= */
+body.light-mode nav {
+    background: rgba(255, 255, 255, 0.95); /* Putih agak transparan */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Warna Teks Menu Awal (Sebelum Hover) di Light Mode */
+body.light-mode .nav-desktop a {
+    color: #555555; /* Abu gelap biar kelihatan di putih */
+}
+
+/* Saat Hover di Light Mode */
+body.light-mode .nav-desktop a:hover {
+    background-color: var(--accent); /* Tetap warna aksen */
+    color: #ffffff !important;       /* Teks Tetap Putih */
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); /* Glow ungu */
+}
+
+/* Tombol Icon (Theme/Lang) di Light Mode */
+body.light-mode .icon-btn {
+    border-color: #ccc;
+    color: #333;
+}
+body.light-mode .icon-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+/* =========================================
+   3. MOBILE MENU & OVERLAY
+   ========================================= */
+.mobile-menu {
+    position: fixed; top: 0; right: 0;
+    width: 75%; max-width: 280px;
+    height: 100vh;
+    background: var(--bg-body);
+    z-index: 2000;
+    padding: 30px;
+    transform: translateX(100%); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column;
+}
+.mobile-menu.active { transform: translateX(0); }
+
+.mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.menu-title { font-weight: 700; font-size: 1.2rem; }
+.close-btn { background: none; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
+.close-btn:hover { color: var(--accent); }
+
+.mobile-menu-links a { 
+    display: block; font-size: 1.1rem; font-weight: 500; 
+    border-bottom: 1px solid var(--border); padding: 12px 0; 
+}
+.mobile-lang-btn { margin-top: 20px; color: var(--accent); font-weight: 600; cursor: pointer; }
+
+/* Overlay Gelap */
+.overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); z-index: 1500;
+    opacity: 0; visibility: hidden; transition: 0.3s;
+    backdrop-filter: blur(3px);
+}
+.overlay.active { opacity: 1; visibility: visible; }
+
+/* =========================================
+   4. SECTIONS & ANIMATION
+   ========================================= */
+section { padding: 100px 0; }
+.container { width: 90%; max-width: 1000px; margin: auto; }
+.section-title { margin-bottom: 50px; }
+.section-title h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; }
+.line { width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
+
+/* Animasi Scroll Reveal */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* =========================================
+   5. HOME SECTION
+   ========================================= */
+#home { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
+.home-layout { display: flex; align-items: center; justify-content: space-between; gap: 50px; }
+
+.greeting { color: var(--accent); font-weight: 600; margin-bottom: 8px; display: block; font-size: 1.1rem; }
+.hero-name { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 10px; }
+.highlight, .typing-container { font-size: 1.5rem; color: var(--text-sec); min-height: 40px; margin-bottom: 25px; font-weight: 600; }
+.cursor { color: var(--accent); animation: blink 1s infinite; font-weight: 100;}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.home-desc { max-width: 500px; margin-bottom: 35px; color: var(--text-sec); font-size: 1.05rem; }
+
+.btn-wrapper { display: flex; gap: 15px; }
+.btn { padding: 12px 28px; border-radius: 6px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; border: 2px solid transparent; transition: 0.3s; }
+.primary-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+.primary-btn:hover { background: transparent; color: var(--accent); }
+.secondary-btn { border-color: var(--border); color: var(--text-main); }
+.secondary-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.home-img img { 
+    width: 340px; height: 340px; object-fit: cover; 
+    border-radius: 20px; border: 1px solid var(--border);
+    filter: grayscale(100%); transition: 0.5s ease;
     box-shadow: var(--shadow);
 }
-.profile-pic:hover { filter: grayscale(0%); transform: scale(1.02); }
+.home-img img:hover { filter: grayscale(0%); border-color: var(--accent); transform: scale(1.02); }
 
-.social-vertical {
-    position: absolute; left: -50px; bottom: 0;
-    display: flex; flex-direction: column; gap: 15px;
+/* =========================================
+   6. ABOUT & SKILLS
+   ========================================= */
+.about-content p { color: var(--text-sec); margin-bottom: 25px; font-size: 1.05rem; }
+.social-icons { display: flex; gap: 20px; }
+.social-icons i { font-size: 2.5rem; color: var(--text-sec); transition: 0.3s; }
+.social-icons a:hover i { color: var(--accent); transform: translateY(-3px); }
+
+/* SKILLS MATRIX */
+.matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.matrix-card { 
+    background: var(--bg-alt); border: 1px solid var(--border); 
+    border-radius: 12px; padding: 30px; 
+    display: flex; align-items: center; gap: 20px; 
+    transition: 0.3s;
 }
-.social-vertical a { color: var(--text-muted); font-size: 1.2rem; transition: 0.3s; }
-.social-vertical a:hover { color: var(--primary); transform: translateX(5px); }
+.matrix-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.skill-logos { display: flex; gap: 15px; align-items: center; }
+.skill-logos i, .custom-icon { font-size: 2.2rem; color: #666; transition: 0.3s; }
+.matrix-card:hover .skill-logos i, .matrix-card:hover .custom-icon { color: var(--accent); }
 
-.about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
-.text-compact { max-width: 500px; text-align: justify; line-height: 1.8; color: var(--text-muted); margin-bottom: 20px; }
+/* Warna Logo Hover */
+.matrix-card:hover i.devicon-html5-plain { color: #E34F26; }
+.matrix-card:hover i.devicon-css3-plain { color: #1572B6; }
+.matrix-card:hover i.devicon-javascript-plain { color: #F7DF1E; }
+.matrix-card:hover i.devicon-windows8-original { color: #00ADEF; }
+.matrix-card:hover i.devicon-linux-plain { color: #FCC624; }
 
-.card-box {
-    background: var(--bg-card); padding: 40px; border-radius: 20px;
-    border: 1px solid var(--border); width: 100%;
+/* =========================================
+   7. PROJECTS
+   ========================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px; width: 100%;
 }
-.bio-table { width: 100%; border-collapse: collapse; }
-.bio-table td { padding: 15px 0; border-bottom: 1px solid var(--border); color: var(--text-main); }
-.bio-table td:first-child { font-weight: bold; color: var(--primary); width: 35%; }
 
-.container-materi { width: 100%; max-width: 1000px; margin-top: 60px; }
-.section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--primary); }
-.materi-block { margin-bottom: 40px; background: var(--bg-body); padding: 20px; border-radius: 10px; border: 1px solid var(--border); }
-.materi-block h3 { margin-bottom: 15px; color: var(--text-main); border-left: 4px solid var(--primary); padding-left: 10px; }
-.materi-block p, .materi-block ul { color: var(--text-muted); line-height: 1.6; }
-.materi-list { margin-left: 20px; }
+.project-card {
+    background: var(--bg-alt); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: all 0.3s ease; display: flex; flex-direction: column;
+}
+.project-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+.card-content h3 { font-size: 1.4rem; margin-bottom: 10px; }
+.proj-desc { font-size: 0.95rem; color: var(--text-sec); margin-bottom: 25px; flex-grow: 1; }
 
-.materi-table { width: 100%; border-collapse: collapse; margin-top: 10px; overflow: hidden; }
-.materi-table th, .materi-table td { padding: 15px; border-bottom: 1px solid var(--border); text-align: left; }
-.materi-table th { background: var(--primary); color: white; }
+.btn-small { 
+    padding: 8px 16px; font-size: 0.85rem; border: 1px solid var(--accent); 
+    border-radius: 4px; color: var(--accent); font-weight: 600; transition: 0.3s;
+}
+.btn-small:hover { background: var(--accent); color: #fff; }
 
-.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-.tool-card { background: var(--bg-card); padding: 20px; border-radius: 10px; border: 1px solid var(--border); transition: 0.3s; }
-.tool-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-.tool-card h4 { color: var(--primary); margin-bottom: 10px; }
+.tags span { font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); margin-right: 8px; color: var(--text-sec); }
+.project-card.coming-soon { border-style: dashed; opacity: 0.8; }
 
-footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem; }
+/* =========================================
+   8. CONTACT SECTION (DIPINDAH KE TENGAH)
+   ========================================= */
+.contact-wrapper {
+    text-align: center;      /* Bikin tulisan rata tengah */
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Bikin tombol rata tengah */
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;          /* Posisikan kotak di tengah layar */
+}
 
-.en { display: none; }
-body.english-mode .id { display: none !important; }
-body.english-mode .en { display: inline-block !important; }
-body.english-mode div.en, body.english-mode p.en, body.english-mode span.en { display: block; }
-body.english-mode span.en { display: inline; }
+/* =========================================
+   9. FOOTER (TEXT PUTIH SEMUA)
+   ========================================= */
+footer { 
+    background: var(--bg-alt); 
+    padding: 60px 0 25px; 
+    border-top: 1px solid var(--border); 
+    margin-top: 80px;
+    /* PAKSA WARNA PUTIH UNTUK KONTAINER UTAMA */
+    color: #ffffff !important;
+}
 
+/* Paksa Judul, Link, Paragraf, dan Copyright jadi Putih */
+.footer-logo, 
+.footer-section h4, 
+.links-section ul li a, 
+.footer-section p,
+.footer-bottom p {
+    color: #ffffff !important;
+}
+
+/* Link Hover Effect (Biar tetap ada interaksi) */
+.links-section a:hover { 
+    color: #ffffff !important; 
+    text-decoration: underline !important; /* Garis bawah saat hover */
+    padding-left: 5px; 
+}
+
+/* Icon Sosmed Putih */
+.footer-socials a { 
+    width: 38px; height: 38px; 
+    border: 1px solid rgba(255,255,255,0.5); /* Border putih transparan */
+    display: flex; align-items: center; justify-content: center; 
+    border-radius: 50%; 
+    transition: 0.3s;
+    color: #ffffff !important; /* Icon Putih */
+}
+
+.footer-socials a:hover { 
+    background: #ffffff; 
+    color: var(--accent) !important; /* Pas di-hover icon jadi berwarna */
+    border-color: #ffffff; 
+}
+
+/* =========================================
+   10. MEDIA QUERIES (TAMPILAN HP)
+   ========================================= */
+@media (max-width: 900px) {
+    .nav-desktop, .lang-toggle { display: none; }
+    .hamburger-btn { display: flex; }
+    
+    /* PADDING DI HP DIKURANGI AGAR TIDAK TERLALU BESAR */
+    section { padding: 60px 0; }
+    
+    .home-layout { flex-direction: column-reverse; text-align: center; gap: 30px; }
+    /* UKURAN GAMBAR DI HP DIPERKECIL */
+    .home-img img { width: 200px; height: 200px; margin: auto; }
+    
+    /* UKURAN FONT DI HP DISESUAIKAN */
+    .hero-name { font-size: 2.5rem; }
+    .typing-container { font-size: 1.3rem; min-height: 30px; }
+    .btn-wrapper { justify-content: center; }
+    
+    .projects-grid, .matrix-grid { grid-template-columns: 1fr; gap: 20px; } 
+    
+    .footer-content { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+    .footer-socials { justify-content: center; }
+}
+
+/* =========================================
+   11. TRANSLATE LOGIC
+   ========================================= */
+.id, .en { display: none; }
+body.indonesia-mode .id { display: inline; }
+body.indonesia-mode div.id, body.indonesia-mode p.id, body.indonesia-mode h3.id { display: block; }
+body.english-mode .en { display: inline; }
+body.english-mode div.en, body.english-mode p.en, body.english-mode h3.en { display: block; }
+/* =========================================
+   FIX: LOGO BIAR KELIHATAN DI LIGHT MODE
+   ========================================= */
+
+/* Saat masuk Mode Terang (Light Mode), Logo jadi Hitam */
+body.light-mode .logo {
+    background: none;               /* Hapus efek gradient (opsional) */
+    -webkit-text-fill-color: initial; /* Reset warna transparan */
+    color: #1a1a1a !important;      /* PAKSA JADI HITAM PEKAT */
+}
+
+/* Kalau mau tetap ada efek Gradient tapi lebih Gelap (Opsional) */
+/* Cukup pakai yang atas saja kalau mau simpel hitam. 
+   Kalau mau tetap warna-warni, hapus kode atas dan pakai yang bawah ini: */
+
+/* body.light-mode .logo {
+    background: linear-gradient(45deg, #2b0052, #0033cc); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} 
+/* =========================================
+   FOOTER MINIMALIS (HORIZONTAL / KE SAMPING)
+   ========================================= */
+footer {
+    background-color: #050505; /* Hitam Pekat */
+    padding: 50px 0 20px;     /* Padding lebih tipis biar minimalis */
+    margin-top: 100px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex !important;           /* KUNCI: Flex bikin sejajar */
+    flex-direction: row !important;     /* Arah: Baris (Samping) */
+    justify-content: space-between;     /* Jarak antar kolom otomatis pas */
+    align-items: flex-start;            /* Rata atas */
+    gap: 40px;                          /* Jarak antar elemen */
+}
+
+/* Mengatur lebar tiap kolom biar rapi */
+.brand-section {
+    flex: 2; /* Kolom Brand lebih lebar dikit */
+}
+
+.links-section, 
+.contact-section {
+    flex: 1; /* Kolom Menu & Kontak ukurannya standar */
+}
+
+/* Styling Teks biar Minimalis */
+footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+footer h4 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+footer p, footer a, footer li {
+    font-size: 0.9rem;
+    color: #b0b0b0; /* Abu-abu biar ga nusuk mata */
+    line-height: 1.8;
+}
+
+/* Link Hover Effect */
+footer a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Menu List Hilangkan Titik */
+.links-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Footer Bottom (Copyright) */
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* RESPONSIVE: KHUSUS HP (Layar Kecil) TETAP KE BAWAH */
+/* Karena kalau dipaksa ke samping di HP, tulisannya bakal kejepit/hancur */
 @media (max-width: 768px) {
-    nav { padding: 15px; }
-    nav ul { display: none; }
-    .about-container { grid-template-columns: 1fr; }
-    .photo-wrapper { margin-bottom: 40px; }
-    .social-vertical { display: none; }
-    #home h1 { font-size: 2.2rem; }
-    .text-compact { max-width: 100%; }
+    .footer-content {
+        flex-direction: column !important; /* Balik ke bawah cuma di HP */
+        text-align: left;
+        gap: 30px;
+    }
 }
-html { scroll-behavior: smooth; }
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+/* =========================================
+   FIX: RAPIKAN POSISI KONTAK & SOSMED
+   ========================================= */
 
-body {
-    background-color: var(--bg-body);
-    color: var(--text-main);
-
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
-    overflow-x: hidden;
-}
-
-.controls button i.animating {
-    animation: spin 0.5s ease-in-out;
+/* 1. Merapikan Baris Email & Lokasi */
+.contact-row {
+    display: flex;           /* Aktifkan mode baris */
+    align-items: center;     /* KUNCI: Bikin icon pas di tengah-tengah teks secara vertikal */
+    gap: 15px;               /* Jarak antara icon dan teks */
+    margin-bottom: 15px;     /* Jarak ke baris bawahnya */
+    color: #b0b0b0;          /* Warna teks abu terang */
+    font-size: 0.95rem;
 }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+/* Warna icon email/lokasi jadi ungu/biru */
+.contact-row i {
+    color: var(--accent);
+    font-size: 1.1rem;
+    min-width: 20px; /* Biar lurus meski beda icon */
+    text-align: center;
+}
+
+/* 2. Merapikan Sosmed biar JEJER KE SAMPING */
+.footer-socials {
+    display: flex !important;  /* PAKSA jadi baris ke samping */
+    flex-direction: row !important;
+    gap: 15px;                 /* Jarak antar bulatan sosmed */
+    margin-top: 25px;
+}
+
+/* Styling Bulatan Sosmed */
+.footer-socials a {
+    width: 42px; height: 42px; /* Ukuran bulatan */
+    background: rgba(255, 255, 255, 0.08); /* Latar transparan */
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;        /* Biar bulat sempurna */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+/* Efek Hover Sosmed (Nyala) */
+.footer-socials a:hover {
+    background: var(--accent); /* Jadi warna ungu/biru */
+    box-shadow: 0 0 15px var(--glow); /* Efek cahaya neon */
+    transform: translateY(-3px); /* Naik dikit */
+    border-color: transparent;
+}
+
+/* =========================================
+   FIX TOTAL: BIAR MODE TERANG JELAS & TEGAS
+   ========================================= */
+
+/* 1. Paksa Background Putih & Teks Hitam Pekat */
+body.light-mode {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+}
+
+/* 2. Hero Section (Judul Besar) */
+body.light-mode .home-content h1 {
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: #000000 !important; /* Judul jadi Hitam Solid */
+}
+
+body.light-mode .hero-desc,
+body.light-mode p {
+    color: #444444 !important; /* Paragraf jadi Abu Gelap (bukan abu muda) */
+    font-weight: 500; /* Ditebalkan dikit biar jelas */
+}
+
+/* 3. Kartu Skill (Matrix Card) */
+/* Biar ga ilang di background putih, kita kasih bayangan & border */
+body.light-mode .matrix-card {
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05) !important; /* Bayangan halus */
+}
+
+body.light-mode .matrix-card h3 {
+    color: #000000 !important;
+}
+
+body.light-mode .matrix-card p {
+    color: #555555 !important;
+}
+
+/* 4. Navbar (Menu Atas) */
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid #ddd !important;
+}
+
+body.light-mode .nav-desktop a {
+    color: #333 !important;
+}
+
+body.light-mode .logo {
+    color: #000000 !important;
+}
+
+/* 5. FOOTER (Ubah dari Hitam ke Abu Terang biar Clean) */
+body.light-mode footer {
+    background-color: #f8f9fa !important; /* Abu sangat muda */
+    border-top: 1px solid #ddd !important;
+    color: #333 !important;
+}
+
+/* Ubah semua teks footer jadi gelap */
+body.light-mode footer h3, 
+body.light-mode footer h4, 
+body.light-mode footer span {
+    color: #222 !important;
+}
+
+body.light-mode footer p, 
+body.light-mode footer a, 
+body.light-mode footer li {
+    color: #555 !important;
+}
+
+body.light-mode footer a:hover {
+    color: var(--accent) !important; /* Tetap ungu/biru pas di-hover */
+}
+
+/* 6. Ikon Kontak & Sosmed di Mode Terang */
+body.light-mode .contact-row i {
+    color: var(--accent) !important; /* Ikon tetap berwarna */
+}
+
+body.light-mode .footer-socials a {
+    background: #e0e0e0 !important; /* Bulatan jadi abu-abu */
+    color: #333 !important;         /* Ikon di dalamnya hitam */
+    border: none !important;
+}
+
+body.light-mode .footer-socials a:hover {
+    background: var(--accent) !important;
+    color: #fff !important;
+}
+/* =========================================
+   FIX TOTAL: BIAR MODE TERANG JELAS & TEGAS
+   ========================================= */
+
+/* 1. Paksa Background Putih & Teks Hitam Pekat */
+body.light-mode {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+}
+
+/* 2. Hero Section (Judul Besar) */
+body.light-mode .home-content h1 {
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: #000000 !important; /* Judul jadi Hitam Solid */
+}
+
+body.light-mode .hero-desc,
+body.light-mode p {
+    color: #444444 !important; /* Paragraf jadi Abu Gelap (bukan abu muda) */
+    font-weight: 500; /* Ditebalkan dikit biar jelas */
+}
+
+/* 3. Kartu Skill (Matrix Card) */
+/* Biar ga ilang di background putih, kita kasih bayangan & border */
+body.light-mode .matrix-card {
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05) !important; /* Bayangan halus */
+}
+
+body.light-mode .matrix-card h3 {
+    color: #000000 !important;
+}
+
+body.light-mode .matrix-card p {
+    color: #555555 !important;
+}
+
+/* 4. Navbar (Menu Atas) */
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid #ddd !important;
+}
+
+body.light-mode .nav-desktop a {
+    color: #333 !important;
+}
+
+body.light-mode .logo {
+    color: #000000 !important;
+}
+
+/* 5. FOOTER (Ubah dari Hitam ke Abu Terang biar Clean) */
+body.light-mode footer {
+    background-color: #f8f9fa !important; /* Abu sangat muda */
+    border-top: 1px solid #ddd !important;
+    color: #333 !important;
+}
+
+/* Ubah semua teks footer jadi gelap */
+body.light-mode footer h3, 
+body.light-mode footer h4, 
+body.light-mode footer span {
+    color: #222 !important;
+}
+
+body.light-mode footer p, 
+body.light-mode footer a, 
+body.light-mode footer li {
+    color: #555 !important;
+}
+
+body.light-mode footer a:hover {
+    color: var(--accent) !important; /* Tetap ungu/biru pas di-hover */
+}
+
+/* 6. Ikon Kontak & Sosmed di Mode Terang */
+body.light-mode .contact-row i {
+    color: var(--accent) !important; /* Ikon tetap berwarna */
+}
+
+body.light-mode .footer-socials a {
+    background: #e0e0e0 !important; /* Bulatan jadi abu-abu */
+    color: #333 !important;         /* Ikon di dalamnya hitam */
+    border: none !important;
+}
+
+body.light-mode .footer-socials a:hover {
+    background: var(--accent) !important;
+    color: #fff !important;
+}
+/* =========================================
+   FOOTER DENGAN GARIS PEMBATAS (DIVIDER)
+   ========================================= */
+footer {
+    background-color: #050505;
+    padding: 60px 0 20px;
+    margin-top: 100px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Gap dihapus, kita ganti pakai padding biar garisnya di tengah */
+    gap: 0; 
+}
+
+/* STYLE UNTUK SETIAP KOLOM (Dikasih Garis Kanan) */
+.footer-section {
+    padding: 0 40px; /* Jarak kiri-kanan teks ke garis */
+    border-right: 1px solid rgba(255, 255, 255, 0.15); /* INI GARISNYA */
+}
+
+/* Kolom Brand (Paling Kiri) */
+.brand-section { 
+    flex: 1.5; 
+    padding-left: 0; /* Mentok kiri, jangan ada jarak */
+}
+
+/* Kolom Menu (Tengah) */
+.links-section { 
+    flex: 1; 
+}
+
+/* Kolom Kontak (Paling Kanan) */
+.contact-section { 
+    flex: 1.2; 
+    border-right: none; /* Kolom terakhir JANGAN dikasih garis */
+    padding-right: 0;   /* Mentok kanan */
+}
+
+/* Warna & Font Footer */
+footer h3 { font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; }
+footer h4 { font-size: 1.1rem; margin-bottom: 25px; color: #ffffff; font-weight: 600; }
+footer p, footer a, footer li { font-size: 0.9rem; color: #b0b0b0; line-height: 1.8; }
+footer a:hover { color: var(--accent); }
+
+/* Bagian Kontak */
+.contact-row {
+    display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+    color: #b0b0b0; font-size: 0.95rem;
+}
+.contact-row i { color: var(--accent); font-size: 1.1rem; min-width: 20px; text-align: center; }
+
+/* Sosmed */
+.footer-socials {
+    display: flex !important; flex-direction: row !important; gap: 15px; margin-top: 25px;
+}
+.footer-socials a {
+    width: 40px; height: 40px; background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; color: #ffffff; transition: 0.3s;
+}
+.footer-socials a:hover {
+    background: var(--accent); box-shadow: 0 0 15px var(--glow); border-color: transparent;
+}
+
+.footer-bottom { 
+    text-align: center; margin-top: 50px; padding-top: 20px; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.85rem; color: #666;
+}
+
+/* =========================================
+   LIGHT MODE FIX (GARISNYA DIBIKIN GELAP)
+   ========================================= */
+body.light-mode footer {
+    background-color: #f4f6f8 !important;
+    border-top: 1px solid #ddd !important;
+}
+
+/* Ubah Warna Garis Pembatas di Mode Terang */
+body.light-mode .footer-section {
+    border-right-color: #d0d0d0 !important; /* Garis jadi abu gelap biar kelihatan */
+}
+
+/* =========================================
+   RESPONSIVE (HP) - GARIS JADI HORIZONTAL
+   ========================================= */
+@media (max-width: 900px) {
+    .footer-content { 
+        flex-direction: column !important; 
+        gap: 40px; 
+    }
+    
+    .footer-section {
+        width: 100%;
+        padding: 0 0 30px 0; /* Hapus padding samping */
+        border-right: none;  /* Hapus garis vertikal */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Ganti jadi garis bawah */
+    }
+
+    .contact-section { 
+        border-bottom: none; /* Yang paling bawah ga usah garis */
+        padding-bottom: 0;
+    }
+
+    body.light-mode .footer-section {
+        border-bottom-color: #d0d0d0 !important;
+    }
+}
+/* =========================================
+   12. MOBILE OPTIMIZATION (MINIMALIS & RAPI)
+   ========================================= */
+/* =========================================
+   12. ULTRA COMPACT MOBILE (TAMPILAN HP KECIL & RAPI)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* 1. LAYOUT UMUM & CONTAINER */
+    section { padding: 30px 0 !important; } /* Jarak atas-bawah dirapatkan */
+    .container { width: 92%; } /* Container dilebarkan biar space kepakai */
+    
+    /* 2. NAVBAR (MENU ATAS) SANGAT TIPIS */
+    nav { height: 55px; } /* Tinggi navbar dikurangi */
+    .logo { font-size: 1.2rem; } /* Logo dikecilin */
+    .icon-btn, .hamburger-btn { width: 32px; height: 32px; font-size: 1rem; } /* Tombol menu kecil */
+
+    /* 3. HERO SECTION (BAGIAN ATAS) */
+    #home { padding-top: 80px; padding-bottom: 10px; }
+    
+    .home-layout {
+        flex-direction: column-reverse;
+        gap: 15px; /* Jarak foto ke teks sangat dekat */
+    }
+
+    /* Foto Profil Minimalis */
+    .home-img img {
+        width: 130px;  /* Ukuran foto dikecilin lagi */
+        height: 130px;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    /* Teks Hero */
+    .greeting { font-size: 0.9rem; margin-bottom: 5px; }
+    .hero-name { font-size: 1.8rem; margin-bottom: 5px; line-height: 1.2; } /* Nama dikecilin */
+    .typing-container { font-size: 1rem; min-height: 25px; margin-bottom: 10px; }
+    .home-desc { font-size: 0.85rem; margin-bottom: 15px; line-height: 1.5; } /* Paragraf kecil */
+    
+    /* Tombol Hero */
+    .btn { padding: 8px 18px; font-size: 0.8rem; } 
+
+    /* 4. ABOUT & SKILLS (SKILL MATRIX) */
+    .section-title { margin-bottom: 25px; }
+    .section-title h2 { font-size: 1.5rem; margin-bottom: 5px; }
+    .line { height: 3px; width: 40px; margin-bottom: 15px; }
+
+    .matrix-grid { gap: 10px; } /* Jarak antar kotak skill rapet */
+    
+    .matrix-card {
+        padding: 12px 15px; /* Kartu skill tipis */
+        gap: 12px;
+    }
+    .skill-logos i, .custom-icon { font-size: 1.5rem; } /* Icon skill kecil */
+    .matrix-card h3 { font-size: 0.95rem; }
+    .matrix-card p { font-size: 0.75rem; }
+
+    /* 5. PROJECTS GRID */
+    .projects-grid { gap: 15px; }
+    
+    .project-card .card-content { padding: 15px; }
+    .project-card h3 { font-size: 1.1rem; margin-bottom: 5px; }
+    .proj-desc { font-size: 0.8rem; margin-bottom: 15px; line-height: 1.4; }
+    .tags span { font-size: 0.65rem; padding: 3px 8px; }
+
+    /* 6. FOOTER COMPACT & HORIZONTAL (KESAMPING) */
+    footer {
+        padding: 30px 0 15px;
+        margin-top: 30px;
+        text-align: left;
+    }
+
+    .footer-content {
+        display: flex !important;
+        flex-direction: row !important; /* Tetap Baris */
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        gap: 0;
+    }
+
+    /* Brand (Atas) */
+    .brand-section {
+        flex: 1 1 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-right: none !important;
+    }
+    
+    /* Menu & Kontak (Berdampingan Kiri Kanan) */
+    .links-section {
+        width: 50%;
+        padding-right: 5px;
+        border-right: none !important;
+    }
+    .contact-section {
+        width: 50%;
+        text-align: right;
+        padding-left: 5px;
+    }
+
+    /* Font Footer Super Kecil tapi Jelas */
+    footer h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    footer h4 { font-size: 0.9rem; margin-bottom: 10px; }
+    footer li a, footer p { font-size: 0.75rem; } /* Teks menu kecil */
+    
+    /* Ikon Kontak Rata Kanan */
+    .contact-row {
+        justify-content: flex-end; 
+        gap: 6px;
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+    }
+    
+    /* Sosmed Kecil di Tengah Bawah */
+    .footer-socials {
+        justify-content: center;
+        margin-top: 20px;
+        width: 100%;
+    }
+    .footer-socials a { width: 35px; height: 35px; font-size: 1rem; }
+    
+    .footer-bottom { margin-top: 20px; font-size: 0.7rem; }
 }

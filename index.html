@@ -3,102 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gede Yodyananta | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Gede Yodyananta</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />  
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="indonesia-mode dark-mode">
+<body class="indonesia-mode">
 
-    <nav>
-        <div class="logo">Profile</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about"><span class="id">Tentang</span><span class="en">About</span></a></li>
+    <div class="overlay"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Gede Yodyananta</a>
             
-            <li><a href="materi.html"><span class="id">Materi</span><span class="en">Learning</span></a></li>
-            
-            <li><a href="#biodata"><span class="id">Biodata</span><span class="en">Bio</span></a></li>
-            <li><a href="#contact"><span class="id">Kontak</span><span class="en">Contact</span></a></li>
-        </ul>
-        <div class="controls">
-            <button id="btn-id" class="active" onclick="setLanguage('id')">ID</button>
-            <button id="btn-en" onclick="setLanguage('en')">EN</button>
-            <button onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
+            <div class="nav-desktop">
+                <a href="#home"><span class="id">Beranda</span><span class="en">Home</span></a>
+                <a href="#skills"><span class="id">Keahlian</span><span class="en">Skills</span></a>
+                <a href="#projects"><span class="id">Proyek</span><span class="en">Projects</span></a>
+                <a href="#contact"><span class="id">Kontak</span><span class="en">Contact</span></a>
+            </div>
+
+            <div class="nav-controls">
+                <button class="icon-btn theme-btn" title="Change Theme"><i class="fas fa-moon"></i></button>
+                <button class="icon-btn lang-toggle" title="Change Language">EN</button>
+                <button class="hamburger-btn"><i class="fas fa-bars"></i></button>
+            </div>
         </div>
     </nav>
 
-    <section id="home">
-        <h1>
-            <span class="id">Halo, Saya</span><span class="en">Hi, I am</span> <br>
-            Gede Yodyananta <br>
-            <span class="highlight" id="typing-text"></span>
-        </h1>
-        <div class="btn-group">
-            <a href="#contact" class="btn btn-fill"><span class="id">Hubungi Saya</span><span class="en">Contact Me</span></a>
-            <a href="#about" class="btn btn-outline"><span class="id">Jelajahi</span><span class="en">Explore</span></a>
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="menu-title">Menu</span>
+            <button class="close-btn"><i class="fas fa-times"></i></button>
         </div>
-    </section>
-
-    <section id="about">
-        <div class="about-container">
-            <div class="photo-wrapper">
-                <img src="Foto.png" alt="Profile" class="profile-pic">
-                <div class="social-vertical">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/gdyodyananta_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-            <div class="about-text">
-                <h2><span class="id">Tentang Saya</span><span class="en">About Me</span></h2>
-                <div class="id text-compact">
-                    Saya adalah seorang tech enthusiast yang menyalurkan rasa ingin tahu terhadap teknologi ke dalam profesi sebagai IT Support. <br>
-                    Bagi saya, setiap tantangan teknis adalah kesempatan untuk belajar hal baru, dan kepuasan terbesar saya adalah ketika berhasil mengubah kebingungan pengguna menjadi solusi yang tuntas.
-                </div>
-                <div class="en text-compact">
-                    I am a tech enthusiast who channels my curiosity about technology into a profession as IT Support. <br>
-                    For me, every technical challenge is an opportunity to learn something new, and my greatest satisfaction comes from turning user confusion into complete solutions.
-                </div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-                    <span class="hero-badge">IT Support</span>
-                    <span class="hero-badge">Networking</span>
-                    <span class="hero-badge">Problem Solving</span>
-                </div>
-            </div>
+        <div class="mobile-menu-links">
+            <a href="#home"><span class="id">Beranda</span><span class="en">Home</span></a>
+            <a href="#skills"><span class="id">Keahlian</span><span class="en">Skills</span></a>
+            <a href="#projects"><span class="id">Proyek</span><span class="en">Projects</span></a>
+            <a href="#contact"><span class="id">Kontak</span><span class="en">Contact</span></a>
+            <div class="mobile-lang-btn">Switch to Eng</div>
         </div>
-    </section>
-
-    <section id="biodata" style="background-color: var(--bg-card);">
-        <div class="card-box" style="max-width: 800px;">
-            <h2 style="text-align: center; margin-bottom: 30px;"><span class="id">Data Diri</span><span class="en">Biodata</span></h2>
-            <table class="bio-table">
-                <tr><td><span class="id">Nama</span><span class="en">Name</span></td><td>Gede Yodyananta</td></tr>
-                <tr><td><span class="id">Tempat, Tanggal Lahir</span><span class="en">Place, Date of Birth</span></td><td>Rantau Jaya Ilir, 14 February 2007</td></tr>
-                <tr><td><span class="id">Jenis Kelamin</span><span class="en">Gender</span></td><td><span class="id">Laki-laki</span><span class="en">Male</span></td></tr>
-                <tr><td><span class="id">Agama</span><span class="en">Religion</span></td><td>Hindu</td></tr>
-                <tr><td><span class="id">Kewarganegaraan</span><span class="en">Nationality</span></td><td><span class="id">Indonesia</span><span class="en">Indonesian</span></td></tr>
-                <tr><td><span class="id">Domisili</span><span class="en">Domicile</span></td><td>Bali, Indonesia</td></tr>
-                <tr><td>Email</td><td>gedeyodyananta14@gmail.com</td></tr>
-                <tr><td><span class="id">Status</span><span class="en">Status</span></td><td><span class="id">Mahasiswa</span><span class="en">Student</span></td></tr>
-            </table>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div style="text-align: center;">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;"><span class="id">Mari Terhubung</span><span class="en">Let's Connect</span></h2>
-            <a href="mailto:gedeyodyananta14@gmail.com" class="btn btn-fill" style="padding: 15px 40px; font-size: 1.1rem;"><i class="fas fa-envelope"></i> Email Me</a>
-        </div>
-    </section>
-
-    <footer><p>&copy; 2025 Gede Yodyananta</p></footer>
-    <script src="script.js"></script>
-
-    <div class="theme-overlay"></div>
-
-    <script src="script.js"></script>
-</body>
-</html>
     </div>
+
+    <section id="home" class="reveal">
+        <div class="container home-layout">
+            <div class="home-content">
+                <span class="greeting"><span class="id">Hai, Saya</span><span class="en">Hi, I am</span></span>
+                
+                <h1 class="hero-name">Gede Yodyananta</h1>
+                
+                <h2 class="typing-container"><span id="typing-text"></span><span class="cursor">|</span></h2>
+                
+                <p class="home-desc">
+                    <span class="id">
+                        Halo, saya Gede Yodyananta. Sebagai Network Administrator dan spesialis IT Support, fokus utama saya adalah membangun infrastruktur digital yang stabil, aman, dan efisien untuk operasional harian.
+                    </span>
+                    <span class="en">
+                        Hello, I am Gede Yodyananta. As a Network Administrator and IT Support specialist, my main focus is building digital infrastructure that is stable, secure, and efficient for daily operations.
+                    </span>
+                </p>
+                
+                <div class="btn-wrapper">
+                    <a href="#projects" class="btn primary-btn">
+                        <span class="id">Lihat Proyek</span><span class="en">View Projects</span>
+                    </a>
+                    <a href="cv.pdf" target="_blank" class="btn secondary-btn">
+                        <i class="fas fa-download"></i> 
+                        <span class="id">&nbsp;Unduh CV</span>
+                        <span class="en">&nbsp;Download CV</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="home-img">
+                <img src="Foto.jpg" alt="Gede Yodyananta">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2><span class="id">Keahlian</span><span class="en">My Skills</span></h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="matrix-grid">
+                <div class="matrix-card">
+                    <div class="matrix-icon">
+                        <div class="skill-logos">
+                            <img src="" style="height:25px; filter: grayscale(100%); opacity: 0.7;">
+                        </div>
+                    </div>
+                    <div class="matrix-content">
+                        <h3><span class="id">Jaringan</span><span class="en">Networking</span></h3>
+                        <p>MikroTik, Cisco Packet Tracer, Routing, Switching, VLAN, Hotspot Management.</p>
+                    </div>
+                </div>
+
+                <div class="matrix-card">
+                    <div class="matrix-icon">
+                         <div class="skill-logos">
+                            <i class="devicon-windows8-original"></i>
+                            <i class="devicon-linux-plain"></i>
+                        </div>
+                    </div>
+                    <div class="matrix-content">
+                        <h3>System Admin</h3>
+                        <p>Windows Server, Linux (Debian/Ubuntu), Installation & Troubleshooting.</p>
+                    </div>
+                </div>
+
+                <div class="matrix-card">
+                    <div class="matrix-icon">
+                        <i class="fas fa-tools custom-icon"></i>
+                    </div>
+                    <div class="matrix-content">
+                        <h3><span class="id">Perangkat Keras</span><span class="en">Hardware</span></h3>
+                        <p>PC Assembly, Maintenance, Printer Troubleshooting, Hardware Diagnostics.</p>
+                    </div>
+                </div>
+
+                <div class="matrix-card">
+                    <div class="matrix-icon">
+                        <div class="skill-logos">
+                            <i class="devicon-html5-plain"></i>
+                            <i class="devicon-css3-plain"></i>
+                            <i class="devicon-javascript-plain"></i>
+                        </div>
+                    </div>
+                    <div class="matrix-content">
+                        <h3>Web Development</h3>
+                        <p>HTML5, CSS3, JavaScript (Basic), Responsive Design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2><span class="id">Proyek Pilihan</span><span class="en">Selected Projects</span></h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="card-content">
+                        <h3>Personal Portfolio Website</h3>
+                        
+                        <p class="proj-desc">
+                            <span class="id">
+                                Website portofolio responsif yang dibuat dari nol. Dilengkapi fitur Dark/Light Mode otomatis dan alih bahasa.
+                            </span>
+                            <span class="en">
+                                A responsive portfolio website built from scratch. Features automatic Dark/Light Mode and seamless language switching.
+                            </span>
+                        </p>
+
+                        <div style="margin-bottom: 20px;">
+                            <a href="#" class="btn-small">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+
+                        <div class="tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card coming-soon">
+                    <div class="card-content">
+                        <div style="font-size: 2rem; color: var(--text-sec); margin-bottom: 10px;">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+
+                        <h3>
+                            <span class="id">Segera Hadir</span>
+                            <span class="en">Coming Soon</span>
+                        </h3>
+                        
+                        <p class="proj-desc">
+                            <span class="id">Project jaringan dan instalasi server berikutnya sedang dalam tahap perencanaan.</span>
+                            <span class="en">The next networking project is in the planning stage.</span>
+                        </p>
+
+                        <div class="tags">
+                            <span>Planning</span>
+                            <span>Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <div class="container">
+            <div class="contact-wrapper">
+                <h2><span class="id">Mari Terhubung!</span><span class="en">Let's Connect!</span></h2>
+                <p>
+                    <span class="id">Punya pertanyaan atau penawaran kerjasama?</span>
+                    <span class="en">Have a question or a partnership opportunity?</span>
+                </p>
+                <a href="mailto:gedeyodyananta14@gmail.com" class="btn primary-btn">
+                    <i class="fas fa-envelope"></i> 
+                    <span class="id">&nbsp;Kirim Email</span>
+                    <span class="en">&nbsp;Send Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+<footer>
+       <div class="container footer-content">
+           
+           <div class="footer-section brand-section">
+               <h3>Gede Yodyananta<span style="color: var(--accent);">.</span></h3>
+               <p>
+                   <span class="id">Menciptakan solusi jaringan yang aman dan website interaktif dengan teknologi modern.</span>
+                   <span class="en">Creating secure network solutions and interactive websites with modern technology.</span>
+               </p>
+           </div>
+
+           <div class="footer-section links-section">
+               <h4>Menu</h4>
+               <ul>
+                   <li><a href="#home"><span class="id">Beranda</span><span class="en">Home</span></a></li>
+                   <li><a href="#about"><span class="id">Tentang</span><span class="en">About</span></a></li>
+                   <li><a href="#skills"><span class="id">Keahlian</span><span class="en">Skills</span></a></li>
+                   <li><a href="#projects"><span class="id">Proyek</span><span class="en">Projects</span></a></li>
+               </ul>
+           </div>
+
+           <div class="footer-section contact-section">
+               <h4><span class="id">Hubungi Saya</span><span class="en">Contact Me</span></h4>
+               
+               <div class="contact-row">
+                   <i class="fas fa-envelope"></i>
+                   <span>gedeyodyananta14@gmail.com</span>
+               </div>
+               
+               <div class="contact-row">
+                   <i class="fas fa-map-marker-alt"></i>
+                   <span>Bali, Indonesia</span>
+               </div>
+               
+               <div class="footer-socials">
+                   <a href="https://www.instagram.com/gd.nanta_/" target="_blank"><i class="fab fa-instagram"></i></a>
+                   <a href="https://www.linkedin.com/in/nanta-/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                   <a href="https://github.com/gedeyodyananta" target="_blank"><i class="fab fa-github"></i></a>
+               </div>
+           </div>
+       </div>
+
+       <div class="footer-bottom">
+           <p>
+               &copy; 2026 Gede Yodyananta. 
+               <span class="id">Dibuat dengan Kelaparan.</span>
+               <span class="en">Made with Hungry.</span>
+           </p>
+       </div>
+   </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
